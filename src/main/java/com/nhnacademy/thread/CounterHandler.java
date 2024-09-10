@@ -26,7 +26,7 @@ public class CounterHandler implements Runnable  {
         }
 
         this.countMaxSize = countMaxSize;
-        this.count=0l;
+        this.count=0L;
     }
 
     @Override
@@ -39,6 +39,7 @@ public class CounterHandler implements Runnable  {
             }
             count++;
             log.debug("thread:{},state:{},count:{}",Thread.currentThread().getName(),Thread.currentThread().getState(),count);
+            Thread.yield();
             //TODO#2 Thread.yield()를 사용해서 수행되고 있는 작업을 다른 Thread에게 양보 하세요.
 
         }while (count<countMaxSize);

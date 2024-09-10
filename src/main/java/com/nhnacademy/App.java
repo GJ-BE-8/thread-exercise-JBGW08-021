@@ -45,10 +45,15 @@ public class App
         log.debug("threadB-state:{}",threadB.getState());
 
         //TODO#1 Main Thread가 threadA, ThreadB가 종료될 때 까지 대기 합니다. Thread.yield를 사용 합니다.
-        try{
-            Thread.yield();
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        try {
+            threadB.join();  // threadB가 종료될 때까지 대기
+            threadA.join();  // threadA가 종료될 때까지 대기
+        } catch (InterruptedException e) {  //throw new 안먹힘
+            // 기존의 InterruptedException 예외를 그대로 던짐
+            Thread.currentThread().interrupt();  // 인터럽트 상태 복원
+            System.err.println("Main thread interrupted");
+            // 또는
+            // throw new RuntimeException(e);  // 원래의 예외를 감싸서 던질 수도 있음
         }
         // threadA, threadB가 종료되면 'Application exit!' message를 출력 합니다.
         log.debug("Application exit!");
