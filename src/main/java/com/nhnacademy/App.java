@@ -25,7 +25,7 @@ public class App
         //TODO#6 현재 실행되고 있는 main thread의 이름을 my-thread로 설정 합니다.
         //참고.main thread : Thread.currentThread()
         Thread main = Thread.currentThread();
-        Thread.currentThread().setName("my-thread");
+        main.setName("my-thread");
 
 
         //TODO#7 Counter 생성, countMaxSize는 10으로 설정 후 run method를 호출 합니다.
