@@ -23,7 +23,7 @@ public class App
 {
 
     //TODO#1 monitor로 사용한 객체를 생성 합니다.
-    public static Object monitor = new Object();
+    public static final Object monitor = new Object();
 
     public static void main( String[] args ) throws InterruptedException {
 
@@ -43,15 +43,17 @@ public class App
 
         //TODO#3 - Main Thread에서 2초 후 monitor를 이용하여 대기하고 있는 threadA를 깨움니다.
         Thread.sleep(2000);
-        threadA.notify();
+        synchronized (monitor){     //이걸로 monitor 사용 자격 받아옴
+            monitor.notify();   //스레드 깨우기
+        }
 
         //Main Thread가 threadA  종료될 때 까지 대기 합니다. Thread.yield를 사용 합니다.
         do {
-            Thread.yield();
+            Thread.yield(); //메인 쓰레드 -> threadA로 넘어감.
         }while (threadA.isAlive());
 
         //'Application exit!' message를 출력 합니다.
-        log.debug("Application exit!");
+        log.debug("Application exit!"); //threadA가 끝날때까지 계속 넘어감.
 
     }
 
