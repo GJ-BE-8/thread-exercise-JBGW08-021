@@ -20,8 +20,8 @@ public class App
     {
         //TODO#5 CounterThread 객체를 생성 합니다.
         // thread-name :  my-counter, countMaxSize :10
-        CounterThread counterThread;
-
+        CounterThread counterThread = new CounterThread("my-thread", 10);
+        counterThread.start();
         //TODO#6 counterThread를 시작 합니다.
 
     }
