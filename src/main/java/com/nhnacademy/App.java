@@ -14,10 +14,6 @@ package com.nhnacademy;
 
 import com.nhnacademy.thread.Counter;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ){
