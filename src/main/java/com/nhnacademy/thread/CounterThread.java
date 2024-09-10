@@ -25,9 +25,11 @@ public class CounterThread {
 
     public CounterThread(String name, long countMaxSize) {
         //TODO#2 name <-- null 이거나 공백 문자열이면 IllegalArgumentException이 발생 합니다.
+        if(Objects.isNull(name) || name.isBlank()){
+            throw new IllegalArgumentException("문자열이 null이나 공백 오류");
+        }
 
         //TODO#3 countMaxSize <=0 이면 IllegalArgumentException이 발생 합니다.
-
 
         this.setName(name);
         this.countMaxSize = countMaxSize;
