@@ -21,7 +21,7 @@ public class App
     public static void main( String[] args )
     {
         //counterHandlerA 객체를 생성 합니다. countMaxSize : 10
-        CounterHandler counterHandlerA = new CounterHandler(10l);
+        CounterHandler counterHandlerA = new CounterHandler(10L);
         //threadA 생성시 counterHandlerA 객체를 paramter로 전달 합니다.
         Thread threadA = new Thread(counterHandlerA);
         //threadA의 name을 'my-counter-A' 로 설정 합니다.
@@ -29,7 +29,7 @@ public class App
         log.debug("threadA-state:{}",threadA.getState());
 
         //counterHandlerB 객체를 생성 합니다. countMaxSize : 10
-        CounterHandler counterHandlerB = new CounterHandler(10l);
+        CounterHandler counterHandlerB = new CounterHandler(10L);
         //threadB 생성시 counterHandlerB 객체를 paramter로 전달 합니다.
         Thread threadB = new Thread(counterHandlerB);
         //threadB의 name을 'my-counter-B' 로 설정 합니다.
