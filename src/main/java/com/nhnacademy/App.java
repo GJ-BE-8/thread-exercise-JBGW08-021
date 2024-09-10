@@ -23,13 +23,12 @@ public class App
 {
 
     //TODO#1 monitor로 사용한 객체를 생성 합니다.
-    public static Object monitor;
+    public static Object monitor = new Object();
 
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws InterruptedException {
 
         //TODO#2 counterHandlerA 객체를 생성 합니다. countMaxSize : 10, monitor
-        CounterHandler counterHandlerA = null;
+        CounterHandler counterHandlerA = new CounterHandler(10, monitor);
 
         //threadA 생성시 counterHandlerA 객체를 paramter로 전달 합니다.
         Thread threadA = new Thread(counterHandlerA);
@@ -42,8 +41,9 @@ public class App
         threadA.start();
         log.debug("threadA-state:{}",threadA.getState());
 
-        //TODO#3 - Main Thread에서 2초 후 monitor를 이용하여 대기하고 있는 threadA를 깨움 니다.
-
+        //TODO#3 - Main Thread에서 2초 후 monitor를 이용하여 대기하고 있는 threadA를 깨움니다.
+        Thread.sleep(2000);
+        threadA.notify();
 
         //Main Thread가 threadA  종료될 때 까지 대기 합니다. Thread.yield를 사용 합니다.
         do {
