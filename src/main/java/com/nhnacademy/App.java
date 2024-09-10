@@ -21,36 +21,48 @@ public class App
     public static void main( String[] args )
     {
         //TODO#1 counterHandlerA 객체를 생성 합니다. countMaxSize : 10
-        CounterHandler counterHandlerA;
+        CounterHandler counterHandlerA = new CounterHandler(10);
         //TODO#2 threadA 생성시 counterHandlerA 객체를 paramter로 전달 합니다.
-        Thread threadA;
+        Thread threadA = new Thread(counterHandlerA);
         //TODO#3 threadA의 name을 'my-counter-A' 로 설정 합니다.
+        threadA.setName("my-counter-A");
 
-        log.debug("threadA-state:{}",threadA.getState());
-
+        log.debug("threadA-state:{}",threadA.getState());   //첨보는거
 
         //TODO#4 counterHandlerB 객체를 생성 합니다. countMaxSize : 10
-        CounterHandler counterHandlerB;
+        CounterHandler counterHandlerB = new CounterHandler(10);
         //TODO#5 threadB 생성시 counterHandlerB 객체를 paramter로 전달 합니다.
-        Thread threadB;
+        Thread threadB = new Thread(counterHandlerB);
         //TODO#6 threadB의 name을 'my-counter-B' 로 설정 합니다.
+        threadB.setName("my-counter-B");
 
         log.debug("threadB-state:{}",threadB.getState());
 
         //TODO#7 threadA를 시작 합니다.
-
+        threadA.start();
 
         //TODO#8 threadA 작업이 완료될 때까지 main Thread는 대기 합니다.
+        try {
+            threadA.join(); //예외처리가 필수
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         log.debug("threadA-state:{}",threadA.getState());
 
         //TODO#9 threadB를 시작 합니다.
+        threadB.start();
 
         //TODO#10 threadB 작업이 완료될 때까지 main Thread는 대기 합니다.
+        try {
+            threadB.join(); //예외처리가 필수
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         log.debug("threadB-state:{}",threadB.getState());
 
         //TODO#11 'Application exit!' message를 출력 합니다.
-
+        log.info("Application exit!");
     }
 }
