@@ -15,11 +15,12 @@ package com.nhnacademy;
 import com.nhnacademy.thread.CounterHandler;
 import lombok.extern.slf4j.Slf4j;
 
+import static java.lang.Thread.sleep;
+
 @Slf4j
 public class App
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws InterruptedException {
         //counterHandlerA 객체를 생성 합니다. countMaxSize : 10
         CounterHandler counterHandlerA = new CounterHandler(10l);
         //threadA 생성시 counterHandlerA 객체를 paramter로 전달 합니다.
@@ -44,9 +45,13 @@ public class App
         threadB.start();
         log.debug("threadB-state:{}",threadB.getState());
 
-        //TODO#1 - main Thread 에서 3초 후  threadA에 interrupt 예외를 발생 시킴 니다.
+        //TODO#1 - main Thread 에서 3초 후  threadA에 interrupt 예외를 발생 시킴니다.
+        sleep(3000);
+        threadA.interrupt();
 
         //TODO#3 Main Thread가 threadA, ThreadB가 종료될 때 까지 대기 합니다. Thread.yield를 사용 합니다.
+        threadA.join();
+        threadB.join();
 
         //threadA, threadB 상태를 출력 합니다.
         log.debug("threadA-status:{}",threadA.getState());
