@@ -46,9 +46,8 @@ public class App
 
         //TODO#1 Main Thread가 threadA, ThreadB가 종료될 때 까지 대기 합니다. Thread.yield를 사용 합니다.
         try{
-            threadA.join();
-            threadB.join();
-        } catch (RuntimeException | InterruptedException e) {
+            Thread.yield();
+        } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
         // threadA, threadB가 종료되면 'Application exit!' message를 출력 합니다.
