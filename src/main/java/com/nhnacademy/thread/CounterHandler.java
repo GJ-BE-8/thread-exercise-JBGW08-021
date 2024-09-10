@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 //TODO#1 Runnable interface을 implements(구현) 합니다.
-public class CounterHandler {
+public class CounterHandler implements Runnable{
     private final long countMaxSize;
 
     private long count;
@@ -26,7 +26,7 @@ public class CounterHandler {
 
 
         this.countMaxSize = countMaxSize;
-        this.count=0l;
+        this.count=0;
     }
 
     @Override
