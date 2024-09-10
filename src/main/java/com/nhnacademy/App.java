@@ -27,7 +27,7 @@ public class App
         //TODO#3 threadA의 name을 'my-counter-A' 로 설정 합니다.
         threadA.setName("my-counter-A");
 
-        log.debug("threadA-state:{}",threadA.getState());   //첨보는거
+        log.debug("threadA-state:{}",threadA.getState());   //첨보는거(threadA의 현재 상태 로그로 표현)
 
         //TODO#4 counterHandlerB 객체를 생성 합니다. countMaxSize : 10
         CounterHandler counterHandlerB = new CounterHandler(10);
