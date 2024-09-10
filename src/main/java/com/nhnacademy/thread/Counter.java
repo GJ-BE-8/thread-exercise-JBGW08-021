@@ -9,9 +9,7 @@
  * + prior written permission.
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  */
-
 package com.nhnacademy.thread;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,11 +18,17 @@ public class Counter {
     private long count;
 
     public Counter(long countMaxSize) {
-        //TODO#1 countMaxSize < 0 작다면 IllegalArgumentException 예외가 발생 합니다.
+        try{
+            this.countMaxSize = countMaxSize;
+            //TODO#2 this.countMaxSize 초기화 합니다.
+            this.count = 0;
+            //TODO#3 this.count 값을 0으로 초기화 합니다.
 
-        //TODO#2 this.countMaxSize 초기화 합니다.
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+            //TODO#1 countMaxSize < 0 작다면 IllegalArgumentException 예외가 발생 합니다.
+        }
 
-        //TODO#3 this.count 값을 0으로 초기화 합니다.
 
     }
 
@@ -36,8 +40,14 @@ public class Counter {
               Thread.sleep method를 사용하세요.
               https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#sleep(java.time.Duration)
             */
-
+            try {
+                Thread.sleep(java.time.Duration.ofSeconds(1));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             count++;
+
+            log.info("name:{}, count:{}", Thread.currentThread().getName(), count);
 
             /*TODO#5 count 출력
                 name:{Thread name}, count:{count 변수}
