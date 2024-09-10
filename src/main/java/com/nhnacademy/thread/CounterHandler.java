@@ -14,6 +14,8 @@ package com.nhnacademy.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static java.lang.Thread.sleep;
+
 @Slf4j
 //TODO#1 Runnable interface을 implements(구현) 합니다.
 public class CounterHandler implements Runnable{
@@ -23,7 +25,9 @@ public class CounterHandler implements Runnable{
 
     public CounterHandler(long countMaxSize) {
         //TODO#2 countMaxSize <=0 이면 IllegalArgumentException()이 발생 합니다.
-
+        if(countMaxSize <=0){
+            throw new IllegalArgumentException();
+        }
 
         this.countMaxSize = countMaxSize;
         this.count=0;
@@ -36,9 +40,17 @@ public class CounterHandler implements Runnable{
              - count 1 ~ 10 까지 출력 됩니다.
             ex) thread:my-thread,count:1 ....
          */
-
         do {
-
+            try{
+                sleep(1000);
+                count++;
+                log.info("thread:{}, count:{}",Thread.currentThread().getName(),count);
+            } catch (Exception e) {
+                log.info("시간 오류");
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
+            }
         }while (count<countMaxSize);
+        log.info("시간 종료");
     }
 }
