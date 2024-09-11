@@ -38,23 +38,46 @@ public class SharedCounter {
             semaphore.release()를 호출하여
             허가를 반환 합니다.
          */
-        semaphore.acquire();
-        return count;
+        try {
+            // Semaphore를 획득하여 자원 접근을 제어합니다.
+            semaphore.acquire();
+            // count 값을 반환합니다.
+            return count;
+        } finally {
+            // 작업이 완료되면 Semaphore를 해제하여 다른 스레드가 접근할 수 있도록 합니다.
+            semaphore.release();
+        }
     }
 
-    public long increaseAndGet(){
+    public long increaseAndGet() throws InterruptedException {
         /* TODO#1-3 count = count + 1 증가시키고 count를 반환 합니다.
            1-2 처럼 semaphore를 이용해서 동기화할 수 있도록 구현 합니다.
         */
-        count = count + 1;
-        return count;
+
+        try {
+            // Semaphore를 획득하여 자원 접근을 제어합니다.
+            semaphore.acquire();
+            count = count + 1;
+            return count;
+        } finally {
+            // 작업이 완료되면 Semaphore를 해제하여 다른 스레드가 접근할 수 있도록 합니다.
+            semaphore.release();
+        }
+
     }
 
-    public long decreaseAndGet(){
+    public long decreaseAndGet() throws InterruptedException {
         /*TODO#1-4 count = count-1 감소시키고 count를 반환 합니다.
           1-2 처럼 semaphore를 이용해서 동기화할 수 있도록 구현 합니다.
         */
-        count = count - 1;
-        return count;
+        try {
+            // Semaphore를 획득하여 자원 접근을 제어합니다.
+            semaphore.acquire();
+            count = count - 1;
+            return count;
+        } finally {
+            // 작업이 완료되면 Semaphore를 해제하여 다른 스레드가 접근할 수 있도록 합니다.
+            semaphore.release();
+        }
     }
 }
