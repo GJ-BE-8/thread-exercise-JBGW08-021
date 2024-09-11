@@ -29,7 +29,7 @@ public class App
         CounterIncreaseHandler counterIncreaseHandler = new CounterIncreaseHandler(sharedCounter);
 
         //TODO#3 counterIncreaseHandler를 이용해서 threadA를 생성 합니다.
-        Thread threadA = new Thread(counterIncreaseHandler);    //Thread에 syn 효과 삽입.
+        Thread threadA = new Thread(counterIncreaseHandler);
 
         //TODO#4 threadA의 thread name을 "thread-A"로 설정 합니다.
         threadA.setName("thread-A");
