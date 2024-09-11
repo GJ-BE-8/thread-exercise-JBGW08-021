@@ -28,7 +28,7 @@ public class App
         SharedCounter sharedCounter = new SharedCounter(0L);
 
         //counterIncreaseHandler 객체를 생성 합니다.
-        CounterIncreaseHandler counterIncreaseHandler = new CounterIncreaseHandler(sharedCounter);
+        CounterIncreaseHandler counterIncreaseHandler = new CounterIncreaseHandler(sharedCounter);  //Thread 공유 자원(카운터 관리)
         //counterIncreaseHandler를 이용해서 threadA를 생성 합니다.
         Thread threadA = new Thread(counterIncreaseHandler);
         //threadA의 thread name을 "thread-A"로 설정 합니다.

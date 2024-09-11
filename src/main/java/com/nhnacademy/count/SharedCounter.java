@@ -16,14 +16,14 @@ import java.util.concurrent.Semaphore;
 
 public class SharedCounter {
     private long count;
-    private Semaphore semaphore;
+    private Semaphore semaphore;    //동기화
 
     public SharedCounter(){
         count =0L;
     }
 
     public SharedCounter(long count) {
-        if(count <0){
+        if(count < 0){
             throw new IllegalArgumentException("count > 0 ");
         }
         this.count = count;
