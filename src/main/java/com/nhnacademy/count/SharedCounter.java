@@ -33,8 +33,8 @@ public class SharedCounter {
 
     public long increaseAndGet(){
         //TODO#1-3 count = count + 1 증가시키고 count를 반환 합니다.
-        count++;
-        return count;
+        this.count++;
+        return this.count;
     }
 
     public long decreaseAndGet(){
