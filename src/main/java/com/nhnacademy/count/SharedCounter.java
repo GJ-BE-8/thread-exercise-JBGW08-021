@@ -15,9 +15,7 @@ package com.nhnacademy.count;
 public class SharedCounter {
     private long count;
 
-    public SharedCounter(){
-        count =0l;
-    }
+    public SharedCounter(){count =0L;}
 
     public SharedCounter(long count) {
         //TODO#1-1 생성자를 초기화 합니다. count < 0 IllegalArgumentException아 발생 합니다.
