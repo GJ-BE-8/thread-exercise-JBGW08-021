@@ -25,7 +25,7 @@ public class App
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
         //shardCounter 객체를 0으로 초기화 합니다.
-        SharedCounter sharedCounter = new SharedCounter(0l);
+        SharedCounter sharedCounter = new SharedCounter(0L);
 
         //counterIncreaseHandler 객체를 생성 합니다.
         CounterIncreaseHandler counterIncreaseHandler = new CounterIncreaseHandler(sharedCounter);
